@@ -40,9 +40,35 @@ function App() {
                 <path d="M30.4351,61.1758h-10.4155L0,116.838H10.3479L30.4351,61.1758Z"></path>
               </svg>
       </div>
-      <div className="nav-elem"></div>
-      <div className="nav-elem"></div>
+      <div className="nav-elem">
+     <i className="ri-arrow-right-s-line"></i>       Our show reel
+      </div>
+      <div className="nav-elem">
+        <i className="ri-menu-3-line"></i>
+      </div>
     </nav>
+    <div className="middle">
+
+  <div className="left">
+    <h1>
+      WE <br /> Make <br /> Good <br />  Shit  </h1>
+  </div>
+
+  <div className="right"></div>
+
+</div>
+<div className="bottom">
+  <div className="left"></div>
+  <div className="right">
+    <p>  Dogstudio is a multidisciplinary <br />
+       creative studio at the intersection <br />  
+      of art, design and technology.</p>
+  </div>
+</div>
+
+    <div className="first-line"></div>
+    <div className="second-line"></div>
+
   </section>
   <section id='section-2'></section>
   <section id='section-3'></section>
