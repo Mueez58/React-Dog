@@ -1,9 +1,17 @@
-import React, {useEffect} from 'react'
+import React, {useEffect, useRef } from 'react'
 import * as THREE from "three"
 import { Canvas, useThree } from '@react-three/fiber'
 import { OrbitControls, useGLTF, useTexture, useAnimations} from '@react-three/drei'
+import gsap from 'gsap';
+import { useGSAP } from '@gsap/react';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
 const Dog = () => {
+   
+
+
+  gsap.registerPlugin(useGSAP)
+  gsap.registerPlugin(ScrollTrigger)
 
 
   const model = useGLTF("/models/dog.drc.glb")
@@ -20,10 +28,6 @@ const Dog = () => {
       actions["Take 001"].play()
   }, [actions])
 
- /*  const textures = useTexture({
-  normalMap: "/dog_normals.jpg",
-  sampleMatCap: "/matcap/mat-2.png",
-}) */
 
   const [ normalMap, SampleMatCap ] =( useTexture(["/dog_normals.jpg", "/matcap/mat-2.png" ]))
   .map(texture=>{
@@ -49,8 +53,6 @@ const Dog = () => {
     map:branchMap
    })
     
-
-   
   model.scene.traverse((child)=>{
    if(child.name.includes("DOG")){
    child.material = dogMaterial
@@ -59,9 +61,31 @@ const Dog = () => {
    }
   })
 
+
+  const dogModel = useRef(model)
+
+
+
+   useGSAP(()  => {
+
+    const tl = gsap.timeline({
+      scrollTrigger:{
+        trigger:"#section-1",
+        endTrigger:"#section-3",
+        start:"top top",
+        end:"bottom bottom",
+        markers:true,
+      }
+    })
+  
+   tl.to(dogModel.current.scene.position, {})
+    
+    }, [])
+
+
   return (
   <>
-  <primitive object={model.scene} position={[0.25,-0.55,0]}  rotation={[ 0, Math.PI / 3.9, 0]}/>
+  <primitive  object={model.scene} position={[0.25,-0.55,0]}  rotation={[ 0, Math.PI / 3.9, 0]}/>
   <directionalLight position={[0,5,5]} color={0xFFFFFF} intensity={10} />
   
   </>
