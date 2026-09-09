@@ -9,6 +9,7 @@ body,
 #root {
   width: 100%;
    background-color: black; 
+   color: whitesmoke;
 }
 
 main{
@@ -20,4 +21,12 @@ main{
   border:  2px solid white;
   position: relative;
   z-index: 2;
+ }
+
+ #section-1 {
+   nav {
+    display: flex;
+
+    .nav-elem {}
+   }
  }
